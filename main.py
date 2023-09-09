@@ -18,13 +18,6 @@ continents = data_handler.get_unique_continents()
 # get list of unique countries
 countries = data_handler.get_unique_countries()
 
-# Create an instance of FilterRow
-filter_row = FilterRow(
-    continents=continents,
-    countries=countries,
-    data=data,
-)
-
 
 def main(page: ft.Page):
     ## page layout
@@ -33,18 +26,18 @@ def main(page: ft.Page):
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
     page.theme_mode = ft.ThemeMode.LIGHT
 
+    # Create an instance of FilterRow
+    filter_row = FilterRow(continents=continents, data=data)
+
     ## navigation bar
     page.appbar = NavBar(page, title).create_appbar()
 
+    page.update()
+
+    mainpage = ft.Column(controls=[filter_row])
+
     ## main content
-    page.add(
-        ft.ResponsiveRow(
-            controls=[
-                filter_row.create_row(),
-            ],
-            alignment=ft.MainAxisAlignment.SPACE_EVENLY,
-        )
-    )
+    page.add(mainpage)
 
 
 ft.app(

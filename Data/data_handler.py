@@ -2,7 +2,7 @@ class DataHandler:
     def __init__(self, data_generator):
         self.data_generator = data_generator
         self.df = self.prepare_data()
-
+        
     def prepare_data(self):
         # Get the data from the provided data generator
         data = self.data_generator.get_data()
